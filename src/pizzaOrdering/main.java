@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package comp603_project1;
+package pizzaOrdering;
 
 public class main {
     

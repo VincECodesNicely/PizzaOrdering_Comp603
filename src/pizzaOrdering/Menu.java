@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package comp603_project1;
+package pizzaOrdering;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -27,7 +27,7 @@ public class Menu extends ValidateInputs {
         
         System.out.println("A. " + pizzaCommands[0]);
         System.out.println("B. " + pizzaCommands[1]);
-        System.out.println("Q. " + pizzaCommands[2]);
+        System.out.println("X. " + pizzaCommands[2]);
         
     }
    
@@ -52,12 +52,12 @@ public class Menu extends ValidateInputs {
                 orderPizza(input);
                 break;
             }
-            case 'Q':{
+            case 'X':{
                 System.out.println("Extiting Vincent's pizzeria");
             }
         }
         
-        }while(choice != 'Q');   
+        }while(choice != 'X');   
     }
    
         private void orderPizza(Scanner input){
