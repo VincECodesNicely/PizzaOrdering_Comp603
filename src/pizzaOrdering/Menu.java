@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package pizzaOrdering;
-import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
@@ -13,21 +12,16 @@ import java.util.Scanner;
 public class Menu extends ValidateInputs {
     PizzaOrder po = new PizzaOrder();
     
-    private final String pizzaCommands[] = {"Print Menu", "Order Pizza", "Leave Vincent's Pizzeria"};
-    
-    
-    public Menu(){
-        
-    }
+   
     
     public void displayChoices(){
         System.out.println("\nWelcome to Vincent's Pizzeria.");
         System.out.println("+============================+");
         System.out.println("Enter a number to execute a option: ");
         
-        System.out.println("A. " + pizzaCommands[0]);
-        System.out.println("B. " + pizzaCommands[1]);
-        System.out.println("X. " + pizzaCommands[2]);
+        System.out.println("A. Print Menu");
+        System.out.println("B. Order Pizza");
+        System.out.println("X. Leave Vincent's Pizzeria");
         
     }
    
@@ -64,14 +58,23 @@ public class Menu extends ValidateInputs {
             PizzaOrder po = new PizzaOrder();
 
             input.nextLine();//enters enter. without this nextLine here, name and phonenumber would have printed at the same time
-            System.out.println("Enter name: ");
+            System.out.println("Enter name: ((x) to quit ordering pizzas)");
             String name = input.nextLine();
+            if(name.equalsIgnoreCase("x")){
+                return;
+            }
 
-            System.out.println("Enter Phone Number: ");
+            System.out.println("Enter Phone Number: ((x) to quit ordering pizzas)");
             String phoneNumber = input.nextLine();
+              if(phoneNumber.equalsIgnoreCase("x")){
+                return;
+            }
 
-            System.out.println("Enter Address");
+            System.out.println("Enter Address: ((x) to quit ordering pizzas)");
             String address = input.nextLine();
+            if(address.equalsIgnoreCase("x")){
+                return;
+            }
 
             Customer c = new Customer(name, phoneNumber, address);
             System.out.println(c.toString()); 
@@ -117,7 +120,9 @@ public class Menu extends ValidateInputs {
                     System.out.println("Invalid input. Please try again.");
                 }
                 i++;
+                System.out.println("Total Order: $" + po.calculatePrice(pizzaChoice));
             }
+            
      }
    
     

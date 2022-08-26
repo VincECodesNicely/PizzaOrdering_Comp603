@@ -14,19 +14,21 @@ import java.util.InputMismatchException;
  */
 //checks if the input is x if not will validate it.
 public class ValidateInputs {
+    
+  
      
-       public boolean isValidInput(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            if (input.equalsIgnoreCase("x")) {
-                return true;
-            }
-            System.out.println("Invalid Input.\nPlease input your answer again: ");
-            return false;
-        }
-        return true;
-    }
+    public boolean isValidInput(String input) {
+     try {
+         Integer.parseInt(input);
+     } catch (NumberFormatException e) {
+         if (input.equalsIgnoreCase("x")) {
+             return true;
+         }
+         System.out.println("Invalid Input.\nPlease input your answer again: ");
+         return false;
+     }
+     return true;
+ }
 }
     
 
