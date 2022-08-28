@@ -79,8 +79,8 @@ public class PizzaOrder {
     
     
     
-    public void printReceipt(){
-        
+    public void printReceipt(String pizzaName, double cost){
+        ArrayList<Pizza> receipt =
     }
     
     
