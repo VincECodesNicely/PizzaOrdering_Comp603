@@ -11,18 +11,18 @@ package pizzaOrdering;
  */
 
 import java.util.ArrayList;
-//import java.util.Iterator;
-//import java.util.List;
-//import java.util.Scanner;
+import java.util.HashMap;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
 
-//import java.util.Scanner;
-//import java.io.File;
-//import java.io.FileReader;
-//import java.io.BufferedReader;
-//import java.io.PrintWriter;
+
 
 public class PizzaOrder {
     private ArrayList<Pizza> pizzaTypes;
+    private final HashMap<String, Customer> customers;
+    private final String fileName;
     
     //creating the objects with the kinds of pizza and price
     Pizza Pepperoni = new Pizza("Pepperoni", 13.00);
@@ -38,6 +38,10 @@ public class PizzaOrder {
     public PizzaOrder(){
         //initializing the ArrayList
         pizzaTypes = new ArrayList<>();
+        
+        this.fileName = "./resources/customer.txt";
+        this.customers = new HashMap();
+       
         
         //adding the objects into the ArrayList
         pizzaTypes.add(Pepperoni);
@@ -76,11 +80,21 @@ public class PizzaOrder {
         return output;
     }
     
-    
-    
-    
-    public void printReceipt(String pizzaName, double cost){
-        ArrayList<Pizza> receipt =
+    // will add the customer details to resource file.
+    public void printReceipt(Customer customer){
+        this.customers.put(customer.getName(), customer);
+        try( FileWriter fw = new FileWriter(this.fileName, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw)){
+         
+            for(Customer c : this.customers.values()){
+                pw.println(c.getName() + " " +  c.getPhoneNumber()+ " " + c.getAddress());
+            }
+                pw.close();
+            
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
     }
     
     

@@ -121,6 +121,7 @@ public class Menu extends ValidateInputs {
                 }
                 i++;
                 System.out.println("Total Order: $" + po.calculatePrice(pizzaChoice));
+                po.printReceipt(c);
             }
             
      }
