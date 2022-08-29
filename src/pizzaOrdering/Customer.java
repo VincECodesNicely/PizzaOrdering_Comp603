@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -19,11 +20,19 @@ public class Customer {
     private String name;
     private String phoneNumber;
     private String address;
+    private final String fileName;
+    private final HashMap<String, Customer> customers;
     
     public Customer(String name, String phoneNumber, String address){
         this.name = name;
         this. phoneNumber = phoneNumber;
         this.address = address;
+        
+        //initializing String variable so that I don't have to write the location for the file everytime.
+        this.fileName = "./resources/customer.txt";
+        
+        //initializing the hashmap
+        this.customers = new HashMap();
     }
     
     public void setName(String name){
@@ -57,16 +66,16 @@ public class Customer {
     
      //checks if user is already there, if not will add into the file.
     public File userExists(String input){
-      try(FileWriter fw = new FileWriter("./resources/customer.txt", true);
+      try(FileWriter fw = new FileWriter(this.fileName, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw)){
             
-            if(new Scanner (new File("./resources/customer.txt")).useDelimiter("\\Z").next().contains(input)){
+            if(new Scanner (new File(this.fileName)).useDelimiter("\\Z").next().contains(input)){
             System.out.println("Name was found in the file");
             }
              else{
                  System.out.println("Name was not found, will be adding to file.");
-                out.println(input);
+                
                 out.close();  
              }   
         }
@@ -75,5 +84,22 @@ public class Customer {
         }
       return null;
     }
+    
+    // will add the customer details to resource file.
+    public void printDetails(Customer customer){
+        this.customers.put(customer.getName(), customer);
+        try( FileWriter fw = new FileWriter(this.fileName, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw)){
+            for(Customer c : this.customers.values()){
+                pw.println(c.getName() + " " +  c.getPhoneNumber()+ " " + c.getAddress());
+            }
+                pw.close();
+            
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
     
 }
