@@ -17,7 +17,7 @@ public class Menu extends ValidateInputs {
     public void displayChoices(){
         System.out.println("\nWelcome to Vincent's Pizzeria.");
         System.out.println("+============================+");
-        System.out.println("Enter a number to execute a option: ");
+        System.out.println("Enter the corresponding letter to perform action:\n");
         
         System.out.println("A. Print Menu");
         System.out.println("B. Order Pizza");
@@ -36,6 +36,7 @@ public class Menu extends ValidateInputs {
         do{
         displayChoices();
         choice = input.next().trim().toUpperCase().charAt(0);
+        System.out.println("");
         
         switch(choice){
             case 'A':{
@@ -121,12 +122,11 @@ public class Menu extends ValidateInputs {
                 }
                 i++;
                 System.out.println("Total Order: $" + po.calculatePrice(pizzaChoice));
-                po.printReceipt(c);
+               
             }
+            System.out.println("printing your receipt");
+            c.printDetails(c);
             
      }
-   
-    
-  
-    
+
 }
